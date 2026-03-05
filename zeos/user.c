@@ -20,7 +20,5 @@ int __attribute__ ((__section__(".text.main")))
     	
 
   while(1) {
-  int a = gettime();
-	itoa(a,buff);
-	write(1,buff,strlen(buff)); }
+  }
 }

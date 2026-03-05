@@ -10,15 +10,15 @@ ENTRY(write)
     movl $4, %eax        
     pushl %ebx
 
-    movl 8(%ebp), %edx   
-    movl 12(%ebp), %ecx  
-    movl 16(%ebp), %ebx  
+    movl 8(%ebp), %edx   //fd
+    movl 12(%ebp), %ecx  //buffer
+    movl 16(%ebp), %ebx  // size
 
     pushl %ecx;
-    pushl %edx;       
-    pushl $write_return
+    pushl %edx;       //registros que machaca la llamda
+    pushl $write_return  //link dinamico
     pushl %ebp
-    movl %esp, %ebp
+    movl %esp, %ebp     //Siempre
 
     SYSENTER           
 
@@ -31,13 +31,13 @@ write_return:
     popl %ebx
 
     
-    cmpl $0, %eax        
+    cmpl $0, %eax   //comprueba erro      
     jge write_no_error        
 write_error:
     
     negl %eax            
-    movl %eax, errno     
-    movl $-1, %eax       
+    movl %eax, errno     //Valor errno
+    movl $-1, %eax       //return de la llamada write
 write_no_error:
     movl %ebp, %esp      
     popl %ebp            
@@ -47,9 +47,9 @@ ENTRY(gettime)
     pushl %ebp            
     movl %esp, %ebp       
 
-    movl $10, %eax        
+    movl $10, %eax    //Cada llamad a sistema tiene un numero diferente
+                    //Se debe actualizar la sysTable para que funcione    
   	
-
     pushl %ecx;
     pushl %edx;       
     pushl $time_return

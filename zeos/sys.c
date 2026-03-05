@@ -42,7 +42,7 @@ int sys_write(int fd, char * buffer,int size){
 	if(buffer == NULL) return -EFAULT; 
 	
 	if(size < 0) return -EINVAL; 
-	
+	if(!access_ok(ESCRIPTURA,buffer,size)) return -EFAULT;
 	int bytes = size;
 	int bytes_escritos;
 

@@ -12,7 +12,8 @@ int __attribute__ ((__section__(".text.main")))
 		
 	if(write(1,"Funciona?",9) == -1)  perror();
 	write(1,"\n",1);
-	
+	if(write(1,"Funciona?",-9) == -1) perror();
+	write(1,"\n",1);
 	
 	int a = gettime();
 	itoa(a,buff);

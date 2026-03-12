@@ -1,6 +1,0 @@
-La diferencia entre llamadas a sistema y interrupciones o excecpciones:
-
-
-Las llamadas a sistema son hechas de manera voluntaria, y de forma sincrona. Se llama a un handler comun y luego ese handler distinguira cual es la rutina sys que tiene que llamar. Cada nueva llamada a sistema nos obliga a actualizar la sys table. Recordar que con sysenter no se guarda la dirección de retorno y machaca los registros ecx y edx.
-
-Las interrupciones o excepciones no suelen ser voluntarias, son asincronas y cada excepción tiene su propio handler y su propio tipo de ejecución, suelen ser el error o el impedimento para que no puedas cargarte el pc. Cada excepcion o interrupción nueva tenemos qu actualizar la mascara de bits.
